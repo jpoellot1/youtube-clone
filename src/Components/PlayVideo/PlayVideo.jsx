@@ -20,7 +20,6 @@ const PlayVideo = () => {
     const [commentData, setCommentData] = useState([])
 
     const fetchVideoData = async () => {
-        // Fetching Videos Data
         const videoDetails_url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
         await fetch(videoDetails_url).then(response => response.json()).then(data=> setApiData(data.items[0]))
     }
@@ -28,11 +27,9 @@ const PlayVideo = () => {
     const fetchOtherData = async () => {
         if(!apiData) return;
         
-        // Fetching Channel Data
         const channelData_url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${apiData.snippet.channelId}&key=${API_KEY}`
         await fetch(channelData_url).then(response => response.json()).then(data=> setChannelData(data.items[0]))
 
-        // Fetching Comment Data
         const comment_url = `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&maxResults=50&videoId=${videoId}&key=${API_KEY}`
         await fetch(comment_url).then(response => response.json()).then(data => setCommentData(data.items))
     }
