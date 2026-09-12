@@ -60,6 +60,10 @@
     border-bottom: 3px solid red;
 }
 
+.subscribed-list .side-links {
+    cursor: not-allowed;
+}
+
 /* Mobile Responsiveness */
 
 @media(max-width: 900px) {
